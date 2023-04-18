@@ -1,2 +1,2 @@
-# java-ds
-self written java data structures
+# java-adts
+self written java adts for fun and revision

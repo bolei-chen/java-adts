@@ -1,57 +1,49 @@
 package lists;
 
-public class CLinkedList<T> implements CList<T>{
+public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
 
   private CNode<T> head;
   private CNode<T> tail;
   private int size;
 
-  public CLinkedList() {
+  public COrderedLinkedList() {
     head = new CNode<>(null);
-    tail = head;
     size = 0;
+    tail = head;
   }
-
-
 
   @Override
   public void add(T element) {
-    if (size == 0) {
-      head.setElem(element);
+    CNode<T> nodeToAdd = new CNode<>(element, null);
+    if (head.elem() == null) {
+      head = nodeToAdd;
+    }
+    if (element.compareTo(head.elem()) <= 0) {
+      nodeToAdd.setNext(head);
+      head = nodeToAdd;
+      if (size == 1) {
+        tail = nodeToAdd.next();
+        // wtf is going on
+        tail.setNext(null);
+      }
     } else {
       CNode<T> current = head;
-      while (current.next() != null) {
+      while (current.next() != null && current.next().elem().compareTo(element) > 0) {
         current = current.next();
       }
-      current.setNext(new CNode<>(element));
-      tail = current.next();
+      if (current.next() == null) {
+        tail = nodeToAdd;
+      }
+      nodeToAdd.setNext(current.next());
+      current.setNext(nodeToAdd);
     }
     size++;
   }
 
   @Override
   public void add(T element, int position) {
-    if (position >= 0 && position <= size) {
-      if (position == 0) {
-        CNode<T> addedElement = new CNode<>(element, head);
-        head = addedElement;
-      }
-      int counter = 0;
-      CNode<T> current = head;
-      while (counter != position - 1) {
-        current = current.next();
-        counter++;
-      }
-
-      CNode<T> addedElement = new CNode<>(element, current.next());
-      current.setNext(addedElement);
-      size++;
-
-    } else {
-      // error here
-    }
+    // not supported
   }
-
 
   @Override
   public T get(int position) {
@@ -94,6 +86,15 @@ public class CLinkedList<T> implements CList<T>{
     }
   }
 
+  @Override
+  public int size() {
+    return size;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return size == 0;
+  }
 
   @Override
   public String toString() {
@@ -108,24 +109,13 @@ public class CLinkedList<T> implements CList<T>{
     return sb.toString();
   }
 
-  @Override
-  public int size() {
-    return size;
-  }
-
-  @Override
-  public boolean isEmpty() {
-    return size == 0;
-  }
 
   public static void main(String[] args) {
-    CList<Integer> ints = new CLinkedList<>();
-    for (int i = 0; i < 400; i++) {
+    CList<Integer> ints = new COrderedLinkedList<>();
+    for (int i = 400; i > 1; i--) {
       ints.add(i);
     }
     System.out.println(ints);
 
   }
-
-
 }

@@ -31,5 +31,9 @@ public class CNode<T> {
     this.next = next;
   }
 
+  @Override
+  public String toString() {
+    return elem.toString();
+  }
 
 }

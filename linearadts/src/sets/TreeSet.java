@@ -1,6 +1,5 @@
 package sets;
 
-import java.util.*;
 public class TreeSet<T extends Comparable<T>> implements Set<T> {
     
     private int size;
@@ -12,11 +11,10 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
     }
      
 	@Override
+     
 	public boolean remove(T item) {
-        // TNode<T> parent = find(item); 
-        // if (parent == root) {
-             
-        // }
+        // considering the difficulty of this method,
+        // we not doing it now
         return true; 
 	}
 

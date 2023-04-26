@@ -1,19 +1,19 @@
 package lists;
 
-public class CArrayList<T> implements CList<T> {
+public class ArrayList<T> implements List<T> {
 
   public static final int DEFAULT_SIZE = 100;
   private int size;
   private T[] elements;
   private int limit;
 
-  public CArrayList() {
+  public ArrayList() {
     elements = (T[]) new Object[DEFAULT_SIZE];
     size = 0;
     limit = DEFAULT_SIZE - 1;
   }
 
-  public CArrayList(int size) {
+  public ArrayList(int size) {
     elements = (T[]) new Object[size];
     this.size = 0;
     limit = size;

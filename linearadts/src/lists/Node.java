@@ -1,16 +1,18 @@
 package lists;
 
-public class CNode<T> {
+import java.util.concurrent.locks.ReentrantLock;
 
+public class Node<T> {
+
+  public ReentrantLock lock = new ReentrantLock();
   private T elem;
+  private Node<T> next;
 
-  private CNode<T> next;
-
-  public CNode(T elem) {
+  public Node(T elem) {
     this(elem, null);
   }
 
-  public CNode(T elem, CNode<T> next) {
+  public Node(T elem, Node<T> next) {
     this.elem = elem;
     this.next = next;
   }
@@ -19,7 +21,7 @@ public class CNode<T> {
     return elem;
   }
 
-  public CNode<T> next() {
+  public Node<T> next() {
     return next;
   }
 
@@ -27,7 +29,7 @@ public class CNode<T> {
     this.elem = elem;
   }
 
-  public void setNext(CNode<T> next) {
+  public void setNext(Node<T> next) {
     this.next = next;
   }
 

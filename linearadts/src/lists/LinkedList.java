@@ -1,13 +1,13 @@
 package lists;
 
-public class CLinkedList<T> implements CList<T>{
+public class LinkedList<T> implements List<T> {
 
-  private CNode<T> head;
-  private CNode<T> tail;
+  private Node<T> head;
+  private Node<T> tail;
   private int size;
 
-  public CLinkedList() {
-    head = new CNode<>(null);
+  public LinkedList() {
+    head = new Node<>(null);
     tail = head;
     size = 0;
   }
@@ -19,12 +19,12 @@ public class CLinkedList<T> implements CList<T>{
     if (size == 0) {
       head.setElem(element);
     } else {
-      CNode<T> current = head;
-      while (current.next() != null) {
-        current = current.next();
+      Node<T> curr = head;
+      while (curr.next() != null) {
+        curr = curr.next();
       }
-      current.setNext(new CNode<>(element));
-      tail = current.next();
+      curr.setNext(new Node<>(element));
+      tail = curr.next();
     }
     size++;
   }
@@ -33,17 +33,17 @@ public class CLinkedList<T> implements CList<T>{
   public void add(T element, int position) {
     if (position >= 0 && position <= size) {
       if (position == 0) {
-        CNode<T> addedElement = new CNode<>(element, head);
+        Node<T> addedElement = new Node<>(element, head);
         head = addedElement;
       }
       int counter = 0;
-      CNode<T> current = head;
+      Node<T> current = head;
       while (counter != position - 1) {
         current = current.next();
         counter++;
       }
 
-      CNode<T> addedElement = new CNode<>(element, current.next());
+      Node<T> addedElement = new Node<>(element, current.next());
       current.setNext(addedElement);
       size++;
 
@@ -57,7 +57,7 @@ public class CLinkedList<T> implements CList<T>{
   public T get(int position) {
     if (position >= 0 && position <= size) {
       int counter = 0;
-      CNode<T> current = head;
+      Node<T> current = head;
       while (counter != position) {
         current = current.next();
         counter++;
@@ -78,7 +78,7 @@ public class CLinkedList<T> implements CList<T>{
         return removedElement;
       }
       int counter = 0;
-      CNode<T> current = head;
+      Node<T> current = head;
       while (counter != position - 1) {
         current = current.next();
         counter++;
@@ -99,7 +99,7 @@ public class CLinkedList<T> implements CList<T>{
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("[");
-    CNode<T> current = head;
+    Node<T> current = head;
     while (current.next() != null) {
       sb.append(current + ", ");
       current = current.next();
@@ -119,7 +119,7 @@ public class CLinkedList<T> implements CList<T>{
   }
 
   public static void main(String[] args) {
-    CList<Integer> ints = new CLinkedList<>();
+    List<Integer> ints = new LinkedList<>();
     for (int i = 0; i < 400; i++) {
       ints.add(i);
     }

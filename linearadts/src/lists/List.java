@@ -1,6 +1,6 @@
 package lists;
 
-public interface CList<E> {
+public interface List<E> {
 
   void add(E element);
 

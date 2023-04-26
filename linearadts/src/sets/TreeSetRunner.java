@@ -12,7 +12,7 @@ public class TreeSetRunner extends Thread {
             if (i == 100){
                  System.out.println(!this.set.contains(i));
             } else {
-                System.out.println(this.getName()+":This set contains: "+i+this.set.contains(i));
+                System.out.println(this.getName() + ":This set contains: " + i + this.set.contains(i));
             }
         }
     }

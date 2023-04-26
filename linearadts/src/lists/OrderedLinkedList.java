@@ -1,20 +1,20 @@
 package lists;
 
-public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
+public class OrderedLinkedList<T extends Comparable<T>> implements List<T> {
 
-  private CNode<T> head;
-  private CNode<T> tail;
+  private Node<T> head;
+  private Node<T> tail;
   private int size;
 
-  public COrderedLinkedList() {
-    head = new CNode<>(null);
+  public OrderedLinkedList() {
+    head = new Node<>(null);
     size = 0;
     tail = head;
   }
 
   @Override
   public void add(T element) {
-    CNode<T> nodeToAdd = new CNode<>(element, null);
+    Node<T> nodeToAdd = new Node<>(element, null);
     if (head.elem() == null) {
       head = nodeToAdd;
     }
@@ -27,7 +27,7 @@ public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
         tail.setNext(null);
       }
     } else {
-      CNode<T> current = head;
+      Node<T> current = head;
       while (current.next() != null && current.next().elem().compareTo(element) > 0) {
         current = current.next();
       }
@@ -49,7 +49,7 @@ public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
   public T get(int position) {
     if (position >= 0 && position <= size) {
       int counter = 0;
-      CNode<T> current = head;
+      Node<T> current = head;
       while (counter != position) {
         current = current.next();
         counter++;
@@ -70,7 +70,7 @@ public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
         return removedElement;
       }
       int counter = 0;
-      CNode<T> current = head;
+      Node<T> current = head;
       while (counter != position - 1) {
         current = current.next();
         counter++;
@@ -100,7 +100,7 @@ public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("[");
-    CNode<T> current = head;
+    Node<T> current = head;
     while (current.next() != null) {
       sb.append(current + ", ");
       current = current.next();
@@ -111,7 +111,7 @@ public class COrderedLinkedList<T extends Comparable<T>> implements CList<T> {
 
 
   public static void main(String[] args) {
-    CList<Integer> ints = new COrderedLinkedList<>();
+    List<Integer> ints = new OrderedLinkedList<>();
     for (int i = 400; i > 1; i--) {
       ints.add(i);
     }

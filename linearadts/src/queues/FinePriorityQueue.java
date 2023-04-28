@@ -1,12 +1,12 @@
 package queues;
 
-public class PriorityQueue<T extends Comparable<T>> implements Queue<T> {
+public class FinePriorityQueue<T extends Comparable<T>> implements Queue<T> {
     
   private Node<T> head;
   private Node<T> tail;
   private volatile int size;
 
-  public PriorityQueue() {
+  public FinePriorityQueue() {
     head = new Node<>();
     tail = head;
     size = 0;

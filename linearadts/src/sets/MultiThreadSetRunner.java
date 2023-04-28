@@ -1,7 +1,7 @@
 package sets;
-public class TreeSetRunner extends Thread {
-    private TreeSet<Integer> set;
-    public TreeSetRunner(TreeSet<Integer> set) {
+public class MultiThreadSetRunner extends Thread {
+    private FineTreeSet<Integer> set;
+    public MultiThreadSetRunner(FineTreeSet<Integer> set) {
         this.set = set;
     }
     public void run(){

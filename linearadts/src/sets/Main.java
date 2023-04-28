@@ -1,11 +1,11 @@
 package sets;
 public class Main {
     public static void main(String[] args) {
-        TreeSet s1 = new TreeSet<>();
+        FineTreeSet s1 = new FineTreeSet<>();
         int limit = 100;
-        TreeSetRunner[] tr1 = new TreeSetRunner[limit];
+        MultiThreadSetRunner[] tr1 = new MultiThreadSetRunner[limit];
         for(int i = 0; i < limit; i++) {
-            tr1[i] = new TreeSetRunner(s1);
+            tr1[i] = new MultiThreadSetRunner(s1);
             tr1[i].start();
         }
         

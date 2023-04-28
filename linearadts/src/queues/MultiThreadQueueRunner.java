@@ -1,8 +1,8 @@
 package queues;
 
 public class MultiThreadQueueRunner extends Thread {
-    private PriorityQueue<Integer> queue;
-    public MultiThreadQueueRunner( PriorityQueue<Integer> queue ) {
+    private Queue<Integer> queue;
+    public MultiThreadQueueRunner( Queue<Integer> queue ) {
         this.queue = queue;
     }
     public void run() {

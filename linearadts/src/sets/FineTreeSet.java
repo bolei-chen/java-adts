@@ -1,11 +1,11 @@
 package sets;
 
-public class TreeSet<T extends Comparable<T>> implements Set<T> {
+public class FineTreeSet<T extends Comparable<T>> implements Set<T> {
     
     private int size;
     private TNode<T> root; 
      
-    public TreeSet() {
+    public FineTreeSet() {
         this.root = new TNode(null); 
         size = 0; 
     }

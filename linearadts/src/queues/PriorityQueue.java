@@ -14,27 +14,38 @@ public class PriorityQueue<T extends Comparable<T>> implements Queue<T> {
 
   
   public void enqueue(T item) {
+    Node<T> elementToAdd = new Node<>(item);
     if (size == 0) {
       head.lock.lock();
       head.item = item;
       head.lock.unlock();
     } else {
-      Node<T> elementToAdd = new Node<>(item);
-      Node<T> prev = this.head;
-      Node<T> curr = prev;
-      prev.lock.lock();
-      int cond = curr.item.compareTo(item); 
+      if (head.item.compareTo(item) < 0) {
+        head.lock.lock();
+        elementToAdd.lock.lock();
+        try {
+          elementToAdd.next = head;
+          head = elementToAdd;
+        } catch (Exception e) {
+        } finally {
+          head.lock.unlock();
+        }
+      } else {
+        Node<T> prev = this.head;
+        Node<T> curr = prev;
+        prev.lock.lock();
+        int cond;
         do {
-          curr = curr.next; 
+          curr = curr.next;
           if (curr == null) {
             break;
-          } 
+          }
           curr.lock.lock();
           prev.lock.unlock();
           prev = curr;
           cond = curr.item.compareTo(item);
         } while (cond > 0);
-         
+
         if (prev.next == null) {
           prev.next = elementToAdd;
           this.tail = elementToAdd;
@@ -47,6 +58,7 @@ public class PriorityQueue<T extends Comparable<T>> implements Queue<T> {
           prev.lock.unlock();
           curr.lock.unlock();
         }
+      }
     }
     size++;
   }

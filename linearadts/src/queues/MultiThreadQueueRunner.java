@@ -13,6 +13,7 @@ public class MultiThreadQueueRunner extends Thread {
             Integer v = this.queue.dequeue();
             if (v == i) {
                 System.out.println("True");
+                System.out.println(v+" "+i);
             } else {
                 System.out.println(v+" "+i);
                 System.out.println("False");

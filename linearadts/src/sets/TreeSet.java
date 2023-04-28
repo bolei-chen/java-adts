@@ -13,8 +13,6 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
 	@Override
      
 	public boolean remove(T item) {
-        // considering the difficulty of this method,
-        // we not doing it now
         return true; 
 	}
 

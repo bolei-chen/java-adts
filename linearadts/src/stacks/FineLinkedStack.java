@@ -33,11 +33,20 @@ public class FineLinkedStack<T> implements Stack<T> {
       System.out.println("err: stack is empty");
       return null;
     }
+    T elementOut;
+    if (size == 1) {
+      top.lock.lock();
+      elementOut = top.item;
+      top.item = null;
+      top.lock.unlock();
+      size--;
+      return elementOut;
+    }
     top.lock.lock();
     top.next.lock.lock();
-    T elementOut = top.item;
+    elementOut = top.item;
     top = top.next;
-    top.lock.lock();
+    top.lock.unlock();
     size--;
     return elementOut;
   }

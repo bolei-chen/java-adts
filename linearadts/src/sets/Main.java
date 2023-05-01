@@ -1,7 +1,7 @@
 package sets;
 public class Main {
     public static void main(String[] args) {
-        FineTreeSet s1 = new FineTreeSet<>();
+        FineTreeSet s1 = new FineTreeSet<Integer>();
         int limit = 100;
         MultiThreadSetRunner[] tr1 = new MultiThreadSetRunner[limit];
         for(int i = 0; i < limit; i++) {

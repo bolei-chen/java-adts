@@ -17,12 +17,13 @@ public class FineLinkedStack<T> implements Stack<T> {
       top.item = element;
       top.lock.unlock();
     } else {
-      Node<T> elementToAdd = new Node<>(element);
-      elementToAdd.lock.lock();
-      top.lock.lock();
-      elementToAdd.next = top;
-      top = elementToAdd;
-      top.lock.unlock();
+        Node<T> elementToAdd = new Node<>(element);
+        top.lock.lock();
+        elementToAdd.lock.lock();
+        elementToAdd.next = top;
+        top = elementToAdd;
+        top.next.lock.unlock();
+        top.lock.unlock();
     }
     size++;
   }
